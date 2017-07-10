@@ -1,0 +1,68 @@
+#include<iostream>
+#include<conio.h>
+#include<fstream>
+#include<string>
+using namespace std;
+void writefile();
+void readfile();
+void main()
+{
+	int choice;
+	cout<<"Press 1 for Writing or 2 for Reading";
+	cin>>choice;
+	if(choice==1)
+	{
+	   writefile();
+	}
+	else
+	{
+	readfile();
+	}
+	getch();
+}
+void writefile()
+{
+	char filename[30];
+	cout<<" Enter File name with Extension and complete location...   ";
+	cin>>filename;
+	ofstream myfile(filename);
+	if(myfile.is_open()==true)
+	{ string htmlcode;
+		cout<<" enter html code";
+		cin>>htmlcode;
+		myfile<<htmlcode;
+		myfile<<"<marquee> <h2>Sir Syed University</h2> </marquee> ";
+		myfile<<" <h3>SEC-B </h3></html>";
+		myfile.close();
+		cout<<" File Has been created ..... ";
+	}
+	else 
+	{
+	 cout<<" File not been Created... Contact Admin... ";
+	}
+}
+void readfile()
+{
+	string line;
+ char filename[30];
+	cout<<" Enter File name with Extension and location...   ";
+	cin>>filename;
+	ifstream myfile(filename);
+	if(myfile.is_open()==true)
+	{
+		while(getline(myfile,line))
+		{
+		  		cout<<line;
+		}
+	myfile.close();
+	
+	}
+	else 
+	{
+	 cout<<" File is not ready for reading... or not present at specified destination....";
+	}
+	
+
+}
+
+

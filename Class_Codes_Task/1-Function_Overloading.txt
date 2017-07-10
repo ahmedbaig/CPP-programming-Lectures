@@ -1,0 +1,63 @@
+#include<iostream>
+#include<conio.h>
+#include<stdio.h>
+// put default arg. in any two overloaded function====>>> task  (monday-29)
+
+using namespace std;// not discussed yet.
+// Prototype, Declaration
+int Tax_Amount(int house_Sq); 
+int Tax_Amount(int house_Sq, int Vehicle_CC);
+int Tax_Amount(int house_Sq, int Vehicle_CC, char Comercial);
+
+void main(void)
+{
+	int hsq;
+	int VCC;
+	char com;
+	cout<<"\n\n_________Well Come to CDGK Taxation Department System __________ ";
+	cout<<"\n\n Plesae Enter House SQ :";
+	cin>>hsq;
+	cout<<"\n\n Please Enter Vehicle CC : { Enter 0 for N/A } ";
+	cin>>VCC;
+	cout<<"\n\n Are These Property Use as Comercial:  { Press y = yes, n = no } ";
+    cin>>com;
+   // Function Calling Work:
+	if(VCC==0 && com=='n')
+	{
+	    int tax_Payable = Tax_Amount(hsq);
+		cout<<" \n\n Dear Customer Your Net Tax Payable Amount is :  "<<tax_Payable;
+	}
+	if(VCC>0 && com=='n')
+	{
+	    int tax_Payable = Tax_Amount(hsq,VCC);
+		cout<<" \n\n Dear Customer Your Net Tax Payable Amount is :  "<<tax_Payable;
+	}
+	if(VCC>0 && com=='y')
+	{
+	    int tax_Payable = Tax_Amount(hsq,VCC,com);
+		cout<<" \n Dear Customer Your Net Tax Payable Amount is :  "<<tax_Payable;
+	}
+
+}
+
+//Function Defination
+
+int Tax_Amount(int house_Sq)
+{
+	int Tax=(house_Sq*1000);
+	return Tax;
+
+}
+
+int Tax_Amount(int house_Sq, int Vehicle_CC)
+{
+     int Tax=(house_Sq*1000)+(Vehicle_CC*100);
+	 return Tax;
+
+}
+
+int Tax_Amount(int house_Sq, int Vehicle_CC, char Comercial)
+{
+	 int Tax=(house_Sq*2000)+(Vehicle_CC*200);
+	 return Tax;
+}

@@ -1,0 +1,43 @@
+#include<iostream>
+#include<conio.h>
+#include<stdio.h>
+#include<string>
+using namespace std;
+
+struct student
+{
+	string name;
+	int rollno;
+	float GPA;
+};
+
+void DisplayRec(struct student s);
+
+void main()
+{
+        struct student s;
+	 	
+		cout<<" \n Enter name of student  : ";
+		cin>>s.name;
+		cout<<" \n Enter rollno of student : ";
+		cin>>s.rollno;
+		cout<<" \n Enter GPA of student  : ";
+		cin>>s.GPA;
+		DisplayRec(s);
+		getch();
+}
+
+void DisplayRec(struct student st)
+{
+
+	
+	cout<<" \n  name of student  : "<<st.name;
+		
+	cout<<" \n  rollno of student : "<<st.rollno;
+		
+	cout<<" \n  GPA of student  : "<<st.GPA;
+		
+
+
+
+}

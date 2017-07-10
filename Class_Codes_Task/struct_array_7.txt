@@ -1,0 +1,54 @@
+#include<iostream>
+#include<conio.h>
+#include<stdio.h>
+#include<string>
+using namespace std;
+
+struct student
+{
+	string name;
+	int rollno;
+	float GPA;
+};
+
+void main()
+{
+struct student s[3];
+	
+	for(int i=0;i<3;i++)// record input 
+	{
+		
+		cout<<" \n\n Record of student number : "<<i+1;
+		
+		cout<<" \n Enter name of student number : ";
+		cin>>s[i].name;
+		cout<<" \n Enter rollno of student number : ";
+		cin>>s[i].rollno;
+		cout<<" \n Enter GPA of student number : ";
+		cin>>s[i].GPA;
+	}
+
+	for(int i=0;i<3;i++)// record output
+	{
+		cout<<" \n\n Record of student number : "<<i+1;
+
+		cout<<" \n\n name of student number : "<<s[i].name;
+		cout<<" \n rollno of student number : "<<s[i].rollno;
+		cout<<" \n GPA of student number : "<<s[i].GPA;
+
+	}
+
+
+	getch();
+}
+
+
+
+
+
+
+
+
+
+
+

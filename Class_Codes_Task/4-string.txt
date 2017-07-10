@@ -1,0 +1,39 @@
+#include<iostream>
+#include<conio.h>
+#include<stdio.h>
+#include<string>
+using namespace std;
+
+void main()
+{
+	string word="I m afraid programing will kill me some day";
+	int choice;
+	cout<<"\n Press 1 for Find subString Position 2 for Replace Position ";
+	cin>>choice;
+	if(choice==1)
+	{
+
+	string substring;
+	cout<<"\n Enter the sub string to find its position  :  ";
+	cin>>substring;
+	int position=word.find(substring);
+	cout<<"\n Position is : "<<position;
+	
+	}
+	if(choice==2)
+	{
+	
+		int strt,end;
+		string replacestring;
+		cout<<"\n Enter the start position of string";
+		cin>>strt;
+		cout<<"\n Enter the End position of string from strt";
+		cin>>end;
+		cout<<"\n Enter the Substring that you want to insert";
+		cin>>replacestring;
+		word.replace(strt,end,replacestring);
+		cout<<" (The New string is) : "<<word;
+		
+	}
+	getch();
+}

@@ -1,0 +1,68 @@
+#include <iostream>
+
+using namespace std;
+
+struct node
+{
+	int data;
+	node *next;
+};
+
+node *head=NULL;
+
+void insertNode( int data ){
+	
+	node *temp;
+	node *addNode = new node;
+	addNode->data = data;
+	addNode->next = NULL;
+
+	temp = head;
+	if( temp != NULL )
+	{
+		while( temp->next != NULL )
+		{
+			temp = temp->next;
+		}
+		temp->next = addNode;
+	}
+	else
+	{
+		head = addNode;
+	}
+}
+
+void display(){
+
+	node * temp;
+	temp = head;
+
+	if( temp == NULL )
+		{cout << "No data inside !" << endl;
+	}
+	else{
+		while( temp->data != NULL )
+	{
+	
+		printf("\nData : %d",(temp->data));
+		
+		printf("\nAddress of Next Node : %p",temp->next);
+			temp = temp->next;	
+	}
+	}
+}
+
+int main(){
+	int values_Data;
+	
+	for(int i=0 ; i<5 ;i++)
+	{
+	printf("Please Enter the Data of Node No. %d : ",i);
+	scanf("%d",&values_Data);
+	insertNode( values_Data );
+	}
+	
+	display();
+	system( "pause" );
+	return 0;
+}

@@ -1,0 +1,59 @@
+#include<iostream>
+#include<conio.h>
+#include<stdio.h>
+
+using namespace std;
+
+void transpose();
+void main()
+{
+	transpose();
+	getch();
+
+}
+void transpose()
+{
+	int arra[3][3];
+	int arrat[3][3];
+	cout<<"\n Enter Array of 3X3 ";
+	for(int a=0; a<3; a++)// input frm user
+	{
+		for(int b=0; b<3; b++)
+		{
+				cin>>arra[a][b];
+		}
+	}
+	for(int a=0; a<3; a++)// Display
+	{
+		for(int b=0; b<3; b++)
+		{
+				cout<<" "<<arra[a][b];
+		}
+		cout<<"\n"<<endl; 
+	}
+	for(int a=0; a<3; a++)// transpose
+	{
+		for(int b=0; b<3; b++)
+		{
+			arrat[b][a]=arra[a][b];	
+		}
+		 
+	}
+
+	cout<<"\n======Transpose======="<<endl; 
+
+	for(int a=0; a<3; a++)// transpose display
+	{
+		for(int b=0; b<3; b++)
+		{
+			cout<<" "<<arrat[a][b];	
+		}
+			cout<<"\n"<<endl; 
+		 
+	}
+
+
+
+
+}
+

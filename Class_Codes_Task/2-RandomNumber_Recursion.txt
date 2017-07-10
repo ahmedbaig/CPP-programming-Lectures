@@ -1,0 +1,48 @@
+#include<iostream>
+#include<conio.h>
+#include<stdio.h>
+#include<cstdlib>
+using namespace std;
+// input from user how many digits you want to generate ???(monday 29)
+//void main()
+//{
+//	int num;
+//	cout<<"\n Please enter how many random number you want to generate :";
+//	cin>>num;
+//	for(int i=0;i<num;i++)
+//	{
+//	   cout<<"\n"<<rand();
+//   	}
+//	getch();
+//
+//}
+int random(int);// Prototype
+void main()
+{
+	int a;
+	cout<<"\n Please enter how many random number you want to generate :";
+    cin>>a;
+	random(a);
+	getch();
+
+}
+
+int random(int num) 
+{
+
+	if(num<=0)
+	{
+		return 0; 	
+	}
+	cout<<"\n ==>> "<<rand();
+	num--;
+	random(num);
+
+}
+
+
+
+
+
+
+

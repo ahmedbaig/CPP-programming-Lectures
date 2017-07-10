@@ -1,0 +1,293 @@
+
+<!-- saved from url=(0089)https://www.cs.cmu.edu/~adamchik/15-121/lectures/Algorithmic%20Complexity/complexity.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>Complexity
+</title></head>
+<body text="#000000" bgcolor="#FFFFFF">
+
+<link rel="stylesheet" href="./Algorithmic_Complexity_files/course.css" type="text/css">
+
+
+<center><h1><font color="green">Algorithmic Complexity</font></h2></center><b><b>NOTE:</b></b>read carefully the highlighted definitions that we already discussed in class
+
+
+
+
+<center><h1><font color="green"></font></h2></center><h2>Introduction</h2>
+<p><B>Algorithmic complexity is concerned about how fast or slow particular algorithm performs.
+We define complexity as a numerical function <i>T(n)</i> - time versus the input size <i>n</i>.
+We want to define time taken by an algorithm without depending on the implementation details. But you agree that <i>T(n)</i> does depend on the implementation! A given algorithm will take different amounts of
+time on the same inputs depending on such factors as:
+processor speed; instruction set, disk speed, brand of compiler and etc. The way around is to estimate efficiency of each algorithm <i>asymptotically</i>. We will measure time <i>T(n)</i> as the number of elementary
+"steps" (defined in any way), provided each such step takes constant time.
+
+</B></p><p>Let us consider two classical examples: addition of two integers. We will add two integers digit by digit (or bit by bit), and this will define a "step" in our computational model. Therefore, we say that addition of two n-bit integers takes n steps. Consequently, the total computational time is <i>T(n) = c * n</i>, where <i>c</i> is time taken by addition of two bits. On different computers, additon of two bits might take different time, say c<sub>1</sub> and c<sub>2</sub>, thus the additon of two n-bit integers takes <i>T(n) = c<sub>1</sub> * n</i> and <i>T(n) = c<sub>2</sub>* n</i> respectively. This shows that different machines result in  different slopes, but time <i>T(n)</i> grows linearly as input size increases.
+</p><p>The process of abstracting away details and determining the rate of resource usage in terms of the input size is one of the fundamental ideas in computer science.
+
+
+
+</p><h2>Asymptotic Notations</h2>
+<p>The goal of computational complexity is to classify algorithms according to their performances. We will represent the time function T(n) using the "big-O" notation to express an algorithm runtime complexity. For example, the following statement
+
+</p><p></p><center>T(n) = O(n<sup>2</sup>)</center>
+
+says that an algorithm has a quadratic time complexity.
+<h3>Definition  of "big Oh"</h3>
+For any monotonic functions f(n) and g(n) from the positive integers to the positive integers,
+we say that f(n) = O(g(n)) when there exist constants c &gt; 0 and n<sub>0</sub> &gt; 0 such that
+
+<p></p><center>f(n) &#8804; c * g(n), for all n &#8805; n<sub>0</sub></center>
+
+<p>Intuitively, this means that function f(n) does not grow faster than g(n), or that function g(n) is an <font color="green"><b> upper bound</b></font>  for f(n), for all sufficiently large n&#8594;&#8734;
+
+
+</p><p>Here is a graphic representation of f(n) = O(g(n)) relation:
+
+</p><center><img src="./Algorithmic_Complexity_files/bigO.bmp"></center>
+
+<p><b>Examples:</b>
+</p><ul>
+<li> 1 = O(n)
+</li><li> n = O(n<sup>2</sup>)
+</li><li> log(n) = O(n)
+</li><li> 2 n + 1 = O(n)
+</li></ul>
+<p>The "big-O" notation is not symmetric: n = O(n<sup>2</sup>) but n<sup>2</sup> &#8800; O(n).
+
+</p><p><b>Exercise</b>. Let us prove n<sup>2</sup> + 2 n + 1 = O(n<sup>2</sup>). We must find such c and n<sub>0</sub> that n
+<sup>2</sup> + 2 n + 1 &#8804; c*n<sup>2</sup>. Let n<sub>0</sub>=1, then for n &#8805; 1
+
+
+</p><center>1 + 2 n + n<sup>2</sup> &#8804; n + 2 n + n<sup>2</sup> &#8804; n<sup>2</sup> + 2 n<sup>2
+</sup> + n
+<sup>2</sup> = 4 n<sup>2</sup></center>
+Therefore, c = 4.
+
+
+<h3><B>Constant Time: O(1)</h3>
+<p>An algorithm is said to run in constant time if it requires the same amount of time
+regardless of the input size. Examples:
+</p><ul>
+<li>array: accessing any element
+</li><li>fixed-size stack: push and pop methods
+</li><li>fixed-size queue: enqueue and dequeue methods</B>
+</li></ul>
+
+<h3><B>Linear Time: O(n)</h3>
+<p>An algorithm is said to run in linear time if its time execution is directly proportional
+to the input size, i.e. time grows linearly as input size  increases. Examples:
+</p><ul>
+<li>array: linear search, traversing, find minimum
+</li><li>ArrayList: contains method</B>
+</li><li>queue: contains method
+</li></ul>
+
+
+<h3><B>Logarithmic  Time: O(log n)</h3>
+<p>An algorithm is said to run in logarithmic time if its time execution is proportional to
+the
+logarithm of the input size. Example:
+</p><ul>
+<li>binary search</B>
+</li></ul>
+
+<p>Recall the "twenty questions" game - the task is to guess the value of a
+hidden number in an interval. Each time you make a guess, you are told whether your
+guess iss too high or too low. Twenty questions game imploies a strategy that uses your
+guess number to halve the interval size. This is an example of the general problem-solving method
+known as <font color="green"><b>binary search</b></font>:
+</p><dir>
+locate the element a in a sorted (in ascending order) array by first comparing a with the
+middle element and then (if they are not equal) dividing the array into two subarrays; if a
+is less than the middle element you repeat the whole procedure in the left subarray,
+otherwise - in the right subarray. The procedure repeats until a is found or subarray is a
+zero dimension.
+</dir>
+
+<p>Note, log(n) &lt; n, when n&#8594;&#8734;. Algorithms that run in O(log n) does not use the
+whole
+input.
+
+
+
+
+</p><h3><B>Quadratic  Time: O(n<sup>2</sup>)</h3>
+<p>An algorithm is said to run in logarithmic time if its time execution is proportional to
+the
+square of the input size. Examples:
+</p><ul>
+<li>bubble sort, selection sort, insertion sort</B>
+</li></ul>
+
+
+
+<h3>Definition  of "big Omega"</h3>
+We need the notation for the <font color="green"><b>lower bound</b></font>. A capital omega
+&#937; notation is used in this case. We
+say that f(n) = &#937;(g(n)) when there exist constant c that f(n) &#8805; c*g(n) for for all
+sufficiently large n.
+Examples
+<ul>
+<li> n = &#937;(1)
+</li><li> n<sup>2</sup> = &#937;(n)
+</li><li> n<sup>2</sup> = &#937;(n log(n))
+</li><li> 2 n + 1 = O(n)
+</li></ul>
+
+
+
+
+
+<h3>Definition  of "big Theta"</h3>
+To measure the complexity of a particular algorithm, means to find the upper and lower
+bounds. A new notation is used in this case. We say that f(n) = &#920;(g(n)) if and only
+f(n) = O(g(n))
+and f(n) = &#937;(g(n)). Examples
+<ul>
+<li> 2 n = &#920;(n)
+</li><li> n<sup>2</sup> + 2 n + 1 = &#920;( n<sup>2</sup>)
+</li></ul>
+
+
+<h3>Analysis of Algorithms</h3>
+The term analysis of algorithms is used to describe approaches to the study of the
+performance
+of
+algorithms. In this course we will perform the following types of analysis:
+<ul>
+<li>the <i>worst-case runtime complexity</i> of the algorithm is the function defined by the maximum
+number of
+steps taken on any instance of size a.
+</li><li>the <i>best-case runtime  complexity</i> of the algorithm is the function defined by the minimum
+number of steps taken on any instance of size a.
+</li><li>the <i>average case runtime  complexity</i> of the algorithm is the function defined by an average
+number of steps taken on any instance of size a.
+</li><li>the <i>amortized runtime complexity</i> of the algorithm is the function defined by a
+sequence
+of operations  applied to the input of size a and averaged over time.
+</li></ul>
+
+<b>Example.</b> Let us consider an algorithm of sequential searching in an array.of size n.
+<blockquote>
+Its <i>worst-case runtime complexity</i> is O(n)
+<br>Its <i>best-case runtime complexity</i> is O(1)
+<br>Its <i>average case runtime complexity</i> is O(n/2)=O(n)
+</blockquote>
+
+
+<h3>Amortized Time Complexity</h3>
+<p>Consider a dynamic array stack. In this model push() will double up the array size if there
+is no enough space. Since copying arrays cannot be performed in constant time, we say that
+push is also cannot be done in constant time. In this section, we will show that push() takes
+amortized constant time.
+
+</p><p>Let us count the number of copying operations needed to do a sequence of pushes.
+
+</p><p align="center">
+
+<table border="" bordercolor="" cellpadding="2">
+
+<tbody><tr align="CENTER">
+<td>&nbsp;<b>push()</b>&nbsp;</td>
+<td>&nbsp;<b>copy</b>&nbsp;</td>
+<td>&nbsp;<b>old array size</b>&nbsp;</td>
+<td>&nbsp;<b>new array size</b>&nbsp;</td>
+</tr>
+
+<tr align="CENTER">
+<td>&nbsp;1 &nbsp;</td>
+<td>&nbsp;0 &nbsp;</td>
+<td>&nbsp;1 &nbsp;</td>
+<td>&nbsp;- &nbsp;</td>
+</tr>
+
+<tr align="CENTER">
+<td>&nbsp;2 &nbsp;</td>
+<td>&nbsp;1 &nbsp;</td>
+<td>&nbsp;1 &nbsp;</td>
+<td>&nbsp;2 &nbsp;</td>
+</tr>
+
+<tr align="CENTER">
+<td>&nbsp;3 &nbsp;</td>
+<td>&nbsp;2 &nbsp;</td>
+<td>&nbsp;2 &nbsp;</td>
+<td>&nbsp;4 &nbsp;</td>
+</tr>
+
+<tr align="CENTER">
+<td>&nbsp;4 &nbsp;</td>
+<td>&nbsp;0 &nbsp;</td>
+<td>&nbsp;4 &nbsp;</td>
+<td>&nbsp;- &nbsp;</td>
+</tr>
+
+<tr align="CENTER">
+<td>&nbsp;5 &nbsp;</td>
+<td>&nbsp;4 &nbsp;</td>
+<td>&nbsp;4 &nbsp;</td>
+<td>&nbsp;8 &nbsp;</td>
+</tr>
+
+<tr align="CENTER">
+<td>&nbsp;6 &nbsp;</td>
+<td>&nbsp;0 &nbsp;</td>
+<td>&nbsp;8 &nbsp;</td>
+<td>&nbsp;- &nbsp;</td>
+</tr>
+
+<tr align="CENTER">
+<td>&nbsp;7 &nbsp;</td>
+<td>&nbsp;0 &nbsp;</td>
+<td>&nbsp;8 &nbsp;</td>
+<td>&nbsp;- &nbsp;</td>
+</tr>
+
+<tr align="CENTER">
+<td>&nbsp;8 &nbsp;</td>
+<td>&nbsp;0 &nbsp;</td>
+<td>&nbsp;8 &nbsp;</td>
+<td>&nbsp;- &nbsp;</td>
+</tr>
+
+<tr align="CENTER">
+<td>&nbsp;9 &nbsp;</td>
+<td>&nbsp;8 &nbsp;</td>
+<td>&nbsp;8 &nbsp;</td>
+<td>&nbsp;16 &nbsp;</td>
+</tr>
+
+</tbody></table>
+</p><p>We see that 3 pushes requires 2 + 1 = 3 copies.
+</p><p>We see that 5 pushes requires 4 + 2 + 1 = 7 copies.
+</p><p>We see that 9 pushes requires 8 + 4 + 2 + 1 = 15 copies.
+</p><p>In general, 2<sup>n</sup>+1 pushes requires 2<sup>n</sup> + 2<sup>n-1</sup>+ ... + 2 + 1 =
+2<sup>n+1</sup> - 1 copies.
+</p><p>Asymptotically speaking, the number of copies is about the same as the number of pushes.
+</p><dir><pre>       2<sup>n+1</sup> - 1
+limit --------- = 2 = O(1)
+ n&#8594;&#8734;   2<sup>n</sup> + 1
+</pre></dir>
+We say that the algorithm runs at <font color="green"><b>amortized constant time</b></font>.
+
+<hr>
+<p>Victor S.Adamchik, CMU, 2009
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p></body></html>
+
+
+

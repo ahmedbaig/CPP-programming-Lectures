@@ -1,0 +1,25 @@
+#include<iostream>
+#include<conio.h>
+#include<stdio.h>
+using namespace std;
+
+float Temp_convertor_CtoK(float*);
+
+void main()
+{
+	float celcius;
+	cout<<"\n Enter Temp in Celcius to convert kelvin scale ";
+	cin>>celcius;
+	//printf("The address is %x",&celcius);
+	float result = Temp_convertor_CtoK(&celcius);
+	cout<<" \nThe temp in kelvin : "<<result;
+	getch();
+}
+
+float Temp_convertor_CtoK(float * celciusptr)
+{
+
+   float kelvin_temp= (*celciusptr) + 273;
+   return kelvin_temp;
+
+   }
